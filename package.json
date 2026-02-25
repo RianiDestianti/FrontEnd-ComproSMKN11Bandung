@@ -1,0 +1,58 @@
+{
+  "name": "smkn11-frontend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build",
+    "lint": "eslint . --fix --cache",
+    "format": "prettier --write --experimental-cli src/"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@tiptap/extension-color": "^3.20.0",
+    "@tiptap/extension-list-item": "^3.20.0",
+    "@tiptap/extension-text-align": "^3.20.0",
+    "@tiptap/extension-text-style": "^3.20.0",
+    "@tiptap/extension-underline": "^3.20.0",
+    "@tiptap/pm": "^3.20.0",
+    "@tiptap/starter-kit": "^3.20.0",
+    "@tiptap/vue-3": "^3.20.0",
+    "@vueup/vue-quill": "^1.2.0",
+    "axios": "^1.13.2",
+    "bootstrap": "^5.3.8",
+    "bootstrap-vue-next": "^0.42.0",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.26",
+    "vue-router": "^4.6.4",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "@tsconfig/node24": "^24.0.3",
+    "@types/node": "^24.10.4",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.6.0",
+    "@vue/tsconfig": "^0.8.1",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^10.0.0",
+    "eslint-plugin-vue": "^10.8.0",
+    "jiti": "^2.6.1",
+    "npm-run-all2": "^8.0.4",
+    "postcss": "^8.5.6",
+    "prettier": "3.7.4",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.0",
+    "vite-plugin-vue-devtools": "^8.0.5",
+    "vue-tsc": "^3.2.1"
+  }
+}
