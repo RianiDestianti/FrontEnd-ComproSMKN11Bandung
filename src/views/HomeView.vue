@@ -2,16 +2,16 @@
   <div class="min-h-screen bg-gradient-to-b from-gray-50 to-white">
     <!-- Hero Section dengan Background Image Slider -->
     <section
-      class="relative text-white py-40 overflow-hidden"
-      @mouseenter="stopHeroSlider"
-      @mouseleave="startHeroSlider"
+      class="relative min-h-screen flex items-center text-white overflow-hidden pb-20 pt-32"
+      @mouseenter="stopHeroAutoSlide"
+      @mouseleave="startHeroAutoSlide"
     >
       <!-- Background Images Slider -->
       <div class="absolute inset-0">
         <div
           v-for="(image, index) in heroImages"
           :key="index"
-          class="absolute inset-0 transition-opacity duration-1000"
+          class="absolute inset-0 transition-opacity duration-1000 will-change-[opacity]"
           :class="currentHeroSlide === index ? 'opacity-100' : 'opacity-0'"
           :style="{
             backgroundImage: `url('${image}')`,
@@ -21,78 +21,46 @@
         ></div>
       </div>
 
-      <!-- Overlay gelap untuk meningkatkan keterbacaan teks -->
-      <div
-        class="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/75 to-indigo-900/80"
-      ></div>
-
-      <!-- Decorative Elements -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-      </div>
+      <!-- Overlay untuk keterbacaan -->
+      <div class="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/10"></div>
 
       <div class="container mx-auto px-4 relative z-10">
-        <!-- Konten Hero - Diperkecil dan ditarik ke atas -->
-        <div class="max-w-4xl mx-auto text-center mb-8">
+        <div class="max-w-3xl lg:max-w-4xl space-y-4 mx-auto text-center">
           <div
-            class="inline-block mb-3 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold"
+            class="inline-flex items-center gap-2 bg-white/18 px-4 py-2 rounded-full text-[12px] font-semibold tracking-wide shadow-[0_6px_18px_-12px_rgba(0,0,0,0.45)] mx-auto"
           >
-            🏆 Sekolah Pusat Keunggulan
+            <span>SEKOLAH PUSAT KEUNGGULAN</span>
+            <span class="text-white/80">&#8226;</span>
+            <span class="text-white/95">Bandung</span>
           </div>
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            <span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-400"
-            >
-              Website Resmi SMKN 11 Bandung
-            </span>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-[0_10px_28px_rgba(0,0,0,0.35)]">
+            SMKN 11 Bandung
           </h1>
-          <p class="text-lg md:text-xl mb-6 text-blue-100 font-light">
-            Berkarakter Tangguh, Unggul Berkompetisi
+
+          <p class="text-base md:text-lg lg:text-xl text-white/90 max-w-3xl leading-relaxed mx-auto">
+            SMKN 11 Bandung dipercaya pada tahun 2021 menjadi salah satu sekolah menengah kejuruan di
+            Indonesia yang menjadi Sekolah Pusat Keunggulan di bidang Hospitality jurusan Manajemen
+            Perkantoran dan Layanan Bisnis.
           </p>
-          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+
+          <div class="flex flex-wrap gap-3 pt-3 justify-center">
             <router-link
               to="/profil-sekolah"
-              class="group inline-flex items-center justify-center px-6 py-3 bg-white text-blue-700 font-bold rounded-xl hover:bg-yellow-400 hover:text-blue-900 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 text-sm"
+              class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#0f5ad0] font-semibold shadow-[0_18px_32px_-18px_rgba(15,90,208,0.9)] hover:bg-[#0c4ec0] transition duration-300"
             >
               Pelajari Lebih Lanjut
-              <svg
-                class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </router-link>
+
             <router-link
               to="/program-keahlian"
-              class="inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl text-sm"
+              class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-white text-[#0f5ad0] border border-white/80 font-semibold shadow-[0_16px_28px_-18px_rgba(0,0,0,0.35)] hover:bg-white/90 transition duration-300"
             >
               Lihat Program Keahlian
             </router-link>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slider Controls -->
-      <div v-if="heroImages.length > 1" class="absolute bottom-2 left-0 right-0 z-20">
-        <div class="container mx-auto px-4">
-          <div class="flex justify-center gap-3">
-            <button
-              v-for="(image, index) in heroImages"
-              :key="index"
-              @click="goToHeroSlide(index)"
-              :class="
-                currentHeroSlide === index ? 'bg-white w-10' : 'bg-white/50 w-3 hover:bg-white/70'
-              "
-              class="h-3 rounded-full transition-all duration-300"
-            ></button>
           </div>
         </div>
       </div>
@@ -101,101 +69,99 @@
       <button
         v-if="heroImages.length > 1"
         @click="prevHeroSlide"
-        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full p-3 transition-all duration-300 hover:scale-110 z-20"
+        class="absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 bg-white/90 text-slate-700 hover:text-blue-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 19l-7-7 7-7"
-          />
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
       <button
         v-if="heroImages.length > 1"
         @click="nextHeroSlide"
-        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full p-3 transition-all duration-300 hover:scale-110 z-20"
+        class="absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 bg-white/90 text-slate-700 hover:text-blue-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
-
-      <!-- Wave Divider -->
-      <div class="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
-          <path
-            d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            fill="#F9FAFB"
-          />
-        </svg>
-      </div>
     </section>
 
     <!-- CARDS PRESTASI - DI DALAM HERO SECTION -->
-    <section class="relative -mt-20 pb-10 z-30">
-      <div class="max-w-6xl mx-auto mt-16">
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-          <div
-            v-for="prestasi in prestasiList"
-            :key="prestasi.id"
-            class="relative rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
-            :style="{
-              backgroundImage: 'url(/images/bg_card_prestasi.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }"
+    <section class="relative -mt-20 sm:-mt-24 pb-12 z-30">
+      <div class="max-w-6xl mx-auto px-4">
+        <div
+          class="relative bg-white border border-gray-100 shadow-[0_22px_55px_-30px_rgba(0,0,0,0.45)] rounded-3xl px-3 sm:px-6 py-5 overflow-hidden"
+        >
+          <!-- Arrows -->
+          <button
+            v-if="prestasiList.length > 0"
+            @click="scrollPrestasi('prev')"
+            class="hidden sm:flex absolute -left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg border border-gray-100 text-blue-700 hover:bg-blue-600 hover:text-white transition-all duration-200 items-center justify-center"
           >
-            <!-- Overlay gelap agar text tetap terbaca -->
-            <div
-              class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40 rounded-xl"
-            ></div>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            v-if="prestasiList.length > 0"
+            @click="scrollPrestasi('next')"
+            class="hidden sm:flex absolute -right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-lg border border-gray-100 text-blue-700 hover:bg-blue-600 hover:text-white transition-all duration-200 items-center justify-center"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
 
-            <!-- Content dengan z-index agar di atas overlay -->
-            <div class="relative z-10">
-              <!-- Icon -->
-              <div
-                class="flex items-center justify-center w-10 h-10 rounded-lg mb-2 mx-auto"
-                :class="getBgGradient(prestasi.tingkat)"
-              >
-                <span class="text-xl">{{ getIcon(prestasi.peringkat) }}</span>
-              </div>
-
-              <!-- Peringkat/Juara -->
-              <div class="text-center mb-2">
-                <span class="text-xs font-bold text-white">Juara {{ prestasi.peringkat }}</span>
-              </div>
-
-              <!-- Nama Siswa -->
-              <h3 class="text-xs font-bold text-yellow-300 mb-1 text-center line-clamp-1">
-                {{ prestasi.nama_siswa }}
-              </h3>
-
-              <!-- Judul Prestasi -->
-              <p class="text-xs text-white mb-2 text-center line-clamp-2 min-h-[2rem]">
-                {{ prestasi.judul }}
-              </p>
-
-              <!-- Badge & Tahun -->
-              <div class="flex items-center justify-center gap-1 text-xs">
-                <span
-                  class="px-2 py-0.5 rounded-full font-semibold"
-                  :class="getBadgeColor(prestasi.tingkat)"
-                >
-                  {{ prestasi.tingkat }}
-                </span>
-                <span class="text-gray-200">{{ formatYear(prestasi.tanggal_prestasi) }}</span>
-              </div>
-            </div>
+          <div v-if="loadingPrestasi" class="flex justify-center py-6">
+            <div class="animate-spin rounded-full h-7 w-7 border-b-2 border-blue-600"></div>
           </div>
 
-          <!-- Loading state -->
-          <div v-if="loadingPrestasi" class="col-span-5 text-center py-4">
+          <div
+            v-else-if="prestasiList.length === 0"
+            class="flex items-center justify-center py-6 text-gray-600 text-sm"
+          >
+            Belum ada data prestasi yang dipublikasikan.
+          </div>
+
+          <div
+            v-else
+            ref="prestasiScroller"
+            class="flex gap-0 overflow-x-auto scroll-smooth hide-scrollbar py-1 pr-2 divide-x divide-blue-300"
+          >
             <div
-              class="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-white"
-            ></div>
+              v-for="prestasi in prestasiList"
+              :key="prestasi.id"
+              class="min-w-[240px] sm:min-w-[260px] lg:min-w-[280px] flex items-center gap-4 px-5 py-4 bg-white"
+            >
+              <div class="w-14 h-14 rounded-full overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-100 shadow-inner flex items-center justify-center">
+                <img
+                  v-if="getPrestasiFoto(prestasi)"
+                  :src="getPrestasiFoto(prestasi)"
+                  :alt="prestasi.nama_siswa"
+                  class="w-full h-full object-cover"
+                  @error="handlePrestasiImageError"
+                />
+                <div v-else class="w-full h-full"></div>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <h3 class="text-sm sm:text-base font-bold text-[#1f4bb6] leading-tight">
+                  {{ prestasi.nama_siswa }}
+                </h3>
+                <p class="text-xs sm:text-sm text-gray-700 leading-snug">
+                  {{ prestasi.judul || `Juara ${prestasi.peringkat}` }}
+                </p>
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-700">
+                  <span class="px-3 py-1 rounded-full bg-[#e7f0ff] text-[#3170f6] font-semibold">
+                    {{ prestasi.tingkat }}
+                  </span>
+                  <span class="font-semibold text-gray-800">{{ formatYear(prestasi.tanggal_prestasi) }}</span>
+                  <span class="text-gray-400">&#8226;</span>
+                  <span class="font-semibold text-blue-700">{{ prestasi.peringkat }}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -278,16 +244,12 @@
     </section>
 
     <!-- Tentang SMKN 11 Bandung -->
-    <section class="py-20 bg-white relative overflow-hidden">
-      <div
-        class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-50 to-transparent opacity-50"
-      ></div>
-
-      <div class="container mx-auto px-4 relative z-10">
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6 md:px-10">
         <div class="max-w-6xl mx-auto">
           <div class="text-center mb-12">
             <span
-              class="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-4 border border-blue-100"
             >
               🏫 Profil Sekolah
             </span>
@@ -296,61 +258,53 @@
             </h2>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-              <p class="text-gray-700 leading-relaxed text-lg">
+          <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
+            <div class="space-y-6 text-lg leading-relaxed text-gray-800">
+              <p>
                 SMK Negeri 11 Bandung merupakan salah satu Lembaga Pendidikan Menengah Kejuruan di
                 Kota Bandung, Jawa Barat. SMKN 11 Bandung dipercaya pada tahun 2021 menjadi salah
                 satu sekolah menengah kejuruan di Indonesia yang menjadi
-                <span class="font-bold text-blue-700">Sekolah Pusat Keunggulan</span> di bidang
+                <span class="font-semibold text-blue-700">Sekolah Pusat Keunggulan</span> di bidang
                 Hospitality jurusan Manajemen Perkantoran dan Layanan Bisnis.
               </p>
-              <p class="text-gray-700 leading-relaxed text-lg">
+              <p>
                 Selain itu SMKN 11 Bandung menjadi salah satu dari 35 sekolah di Jawa Barat yang
                 menjadi sekolah
-                <span class="font-bold text-blue-700"
-                  >Badan Layanan Usaha Daerah Provinsi Jawa Barat</span
-                >.
+                <span class="font-semibold text-blue-700">Badan Layanan Usaha Daerah Provinsi Jawa Barat</span>.
               </p>
-              <p class="text-gray-700 leading-relaxed text-lg">
-                Program-program unggulan seperti
-                <span class="font-semibold"
-                  >Sekolah Pencetak Wirausaha, Teaching Factory, Inkubasi Start Up, Roots Indonesia
-                  - Let's Fight Bullying</span
-                >
-                dan masih banyak lagi program untuk memajukan sumber daya manusia termasuk Siswa,
-                Guru dan Tenaga Kependidikan.
+              <p>
+                Program-program unggulan seperti <span class="font-semibold">Sekolah Pencetak Wirausaha, Teaching Factory, Inkubasi Start Up, Roots Indonesia - Let's Fight Bullying</span> dan masih banyak lagi program untuk memajukan sumber daya manusia termasuk Siswa, Guru dan Tenaga Kependidikan.
               </p>
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
-              <div
-                class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-xl hover:scale-105 transition-transform"
-              >
-                <div class="text-5xl mb-3">🎓</div>
-                <div class="text-3xl font-bold mb-1">2021</div>
-                <div class="text-sm text-blue-100">Sekolah Pusat Keunggulan</div>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="about-card">
+                <div class="about-icon">
+                  <img src="/icons/graduate.png" alt="Pusat Keunggulan" class="w-10 h-10 object-contain" />
+                </div>
+                <div class="about-number">2021</div>
+                <div class="about-label">Pusat Keunggulan</div>
               </div>
-              <div
-                class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl p-6 text-white shadow-xl hover:scale-105 transition-transform"
-              >
-                <div class="text-5xl mb-3">🏢</div>
-                <div class="text-3xl font-bold mb-1">35</div>
-                <div class="text-sm text-indigo-100">Sekolah BLUD Jawa Barat</div>
+              <div class="about-card">
+                <div class="about-icon">
+                  <img src="/icons/circus.png" alt="Sekolah BLUD" class="w-10 h-10 object-contain" />
+                </div>
+                <div class="about-number">35</div>
+                <div class="about-label">Sekolah BLUD Jawa Barat</div>
               </div>
-              <div
-                class="bg-gradient-to-br from-purple-600 to-pink-700 rounded-2xl p-6 text-white shadow-xl hover:scale-105 transition-transform"
-              >
-                <div class="text-5xl mb-3">💼</div>
-                <div class="text-3xl font-bold mb-1">100%</div>
-                <div class="text-sm text-purple-100">Link & Match Industri</div>
+              <div class="about-card">
+                <div class="about-icon">
+                  <img src="/icons/backpack.png" alt="Akreditasi" class="w-10 h-10 object-contain" />
+                </div>
+                <div class="about-number">A</div>
+                <div class="about-label">Akreditasi Sekolah</div>
               </div>
-              <div
-                class="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl p-6 text-white shadow-xl hover:scale-105 transition-transform"
-              >
-                <div class="text-5xl mb-3">🏆</div>
-                <div class="text-3xl font-bold mb-1">A</div>
-                <div class="text-sm text-yellow-100">Akreditasi Sekolah</div>
+              <div class="about-card">
+                <div class="about-icon">
+                  <img src="/icons/winner.png" alt="Link & Match Industri" class="w-10 h-10 object-contain" />
+                </div>
+                <div class="about-number">100%</div>
+                <div class="about-label">Link & Match Industri</div>
               </div>
             </div>
           </div>
@@ -770,7 +724,9 @@
           <div
             class="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
           >
-            <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">🎓</div>
+            <div class="feature-icon">
+              <img src="/icons/bookmark.png" alt="Pendidikan Berkualitas" class="w-12 h-12 object-contain" />
+            </div>
             <h3
               class="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-700 transition-colors"
             >
@@ -785,7 +741,9 @@
           <div
             class="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
           >
-            <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">💼</div>
+            <div class="feature-icon">
+              <img src="/icons/job.png" alt="Link & Match Industri" class="w-12 h-12 object-contain" />
+            </div>
             <h3
               class="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-700 transition-colors"
             >
@@ -800,7 +758,9 @@
           <div
             class="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
           >
-            <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">🏆</div>
+            <div class="feature-icon">
+              <img src="/icons/win.png" alt="Prestasi Gemilang" class="w-12 h-12 object-contain" />
+            </div>
             <h3
               class="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-700 transition-colors"
             >
@@ -836,64 +796,56 @@
           <p class="text-gray-500 mt-4">Memuat berita...</p>
         </div>
 
-        <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           <div
             v-for="berita in beritaTerbaru"
             :key="berita.id"
-            class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
+            class="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
           >
-            <div class="relative h-56 overflow-hidden bg-gray-100">
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"
-              ></div>
+            <div class="relative h-80 bg-gray-200">
               <img
                 v-if="berita.gambar_utama"
                 :src="`${$apiBaseUrl || 'http://localhost:8000'}/storage/${berita.gambar_utama}`"
                 :alt="berita.judul"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 @error="handleImageError($event, berita)"
               />
               <div
                 v-else
-                class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200"
+                class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200 text-4xl text-blue-700 font-bold"
               >
-                <span class="text-6xl">📰</span>
+                📰
               </div>
-              <span
-                class="absolute top-4 left-4 z-20 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full"
-              >
-                {{ berita.kategori?.nama || 'Umum' }}
-              </span>
-            </div>
-
-            <div class="p-6">
-              <h3
-                class="text-xl font-bold mb-3 line-clamp-2 text-gray-900 group-hover:text-blue-700 transition-colors min-h-[56px]"
-              >
-                {{ berita.judul }}
-              </h3>
-              <p class="text-gray-600 mb-4 line-clamp-3 text-sm leading-relaxed">
-                {{ stripHtml(berita.ringkasan || berita.konten || berita.deskripsi || '') }}
-              </p>
-              <router-link
-                :to="`/berita/${berita.id}`"
-                class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
-              >
-                Baca Selengkapnya
-                <svg
-                  class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-[#0f5ad0]/65 via-[#0f5ad0]/35 to-transparent transition-opacity duration-300 group-hover:from-[#0f5ad0]/50 group-hover:via-[#0f5ad0]/25"
+              ></div>
+              <div class="absolute bottom-5 left-5 right-5 z-20 space-y-2 text-white">
+                <h3 class="text-lg md:text-xl font-bold leading-tight line-clamp-2">
+                  {{ berita.judul }}
+                </h3>
+                <p class="text-sm text-white/90 line-clamp-2">
+                  {{ stripHtml(berita.ringkasan || berita.konten || berita.deskripsi || '') }}
+                </p>
+                <router-link
+                  :to="`/berita/${berita.id}`"
+                  class="inline-flex items-center text-white font-semibold text-sm px-4 py-2 bg-[#0f5ad0] rounded-full shadow-md hover:bg-[#0c4ec0] transition"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </router-link>
+                  Baca Selengkapnya
+                  <svg
+                    class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -962,42 +914,27 @@
     <TestimoniSection />
 
     <!-- Call to Action -->
-    <section
-      class="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white relative overflow-hidden"
-    >
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-      </div>
-
-      <div class="container mx-auto px-4 relative z-10">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900">
             Siap Bergabung dengan SMKN 11 Bandung?
           </h2>
-          <p class="text-xl text-blue-100 mb-10 leading-relaxed">
+          <p class="text-gray-600 text-lg leading-relaxed">
             Wujudkan masa depan cemerlang Anda bersama kami. Dapatkan pendidikan berkualitas dengan
             fasilitas modern dan tenaga pengajar profesional.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <router-link
+            <a
               href="https://spmb.jabarprov.go.id"
               target="_blank"
-              class="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-700 font-bold rounded-xl hover:bg-yellow-400 hover:text-blue-900 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
+              class="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-[#0f5ad0] text-white font-semibold shadow-md hover:bg-[#0c4ec0] transition"
             >
-              Daftar Sekarang
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
-              </svg>
-            </router-link>
+              Daftar Sekarang →
+            </a>
             <router-link
               to="/kontak"
-              class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+              class="inline-flex items-center justify-center px-8 py-3 rounded-xl border border-[#0f5ad0] text-[#0f5ad0] font-semibold hover:bg-[#0f5ad0]/10 transition"
             >
               Hubungi Kami
             </router-link>
@@ -1050,6 +987,35 @@
   margin: 0;
 }
 
+.about-card {
+  @apply bg-white rounded-2xl shadow-lg border border-gray-100 px-5 py-6 flex flex-col gap-2;
+}
+
+.about-icon {
+  @apply w-12 h-12 flex items-center justify-center;
+}
+
+.about-number {
+  @apply text-2xl font-bold text-gray-900 leading-tight;
+}
+
+.about-label {
+  @apply text-sm text-gray-600 leading-snug;
+}
+
+.feature-icon {
+  @apply w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center mb-6 shadow-sm;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -1075,6 +1041,7 @@ const guruList = ref([])
 
 const prestasiList = ref([])
 const loadingPrestasi = ref(true)
+const prestasiScroller = ref(null)
 
 // Slider Guru
 const currentSlide = ref(0)
@@ -1123,35 +1090,34 @@ const fetchPrestasi = async () => {
   }
 }
 
-const getBgGradient = (tingkat) => {
-  const gradients = {
-    Internasional: 'bg-gradient-to-br from-purple-500 to-pink-600',
-    Nasional: 'bg-gradient-to-br from-yellow-400 to-orange-500',
-    Provinsi: 'bg-gradient-to-br from-blue-500 to-indigo-600',
-    Kota: 'bg-gradient-to-br from-green-500 to-emerald-600',
-    Kecamatan: 'bg-gradient-to-br from-indigo-500 to-purple-600',
+const getBadgeColor = () => 'bg-[#e8f0ff] text-[#3f70d0]'
+
+const getPrestasiFoto = (prestasi) => {
+  if (prestasi?.foto) {
+    if (prestasi.foto.startsWith('http')) return prestasi.foto
+    return `http://localhost:8000/${prestasi.foto}`
   }
-  return gradients[tingkat] || 'bg-gradient-to-br from-gray-400 to-gray-600'
+  return ''
 }
 
-const getBadgeColor = (tingkat) => {
-  const colors = {
-    Internasional: 'bg-purple-100 text-purple-700',
-    Nasional: 'bg-yellow-100 text-yellow-800',
-    Provinsi: 'bg-blue-100 text-blue-700',
-    Kota: 'bg-green-100 text-green-700',
-    Kecamatan: 'bg-indigo-100 text-indigo-700',
-  }
-  return colors[tingkat] || 'bg-gray-100 text-gray-700'
+const handlePrestasiImageError = (event) => {
+  event.target.style.display = 'none'
 }
 
-const getIcon = (peringkat) => {
-  if (!peringkat) return '🎖️'
-  const p = peringkat.toLowerCase()
-  if (p.includes('1') || p.includes('pertama')) return '🏆'
-  if (p.includes('2') || p.includes('kedua')) return '🥈'
-  if (p.includes('3') || p.includes('ketiga')) return '🥉'
-  return '🎖️'
+const scrollPrestasi = (direction = 'next') => {
+  const scroller = prestasiScroller.value
+  if (!scroller) return
+
+  const firstCard = scroller.firstElementChild
+  const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 260
+  const gapStyle = getComputedStyle(scroller)
+  const gap =
+    parseFloat(gapStyle.columnGap || gapStyle.gap || 16) || 16
+
+  scroller.scrollBy({
+    left: direction === 'next' ? cardWidth + gap : -(cardWidth + gap),
+    behavior: 'smooth',
+  })
 }
 
 const stripHtml = (html) => {

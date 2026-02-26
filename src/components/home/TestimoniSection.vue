@@ -1,10 +1,13 @@
 <template>
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4">
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
       <!-- Header -->
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-800">⭐ Apa Kata Mereka?</h2>
-        <p class="text-gray-500 mt-2">Testimoni dari warga sekolah kami</p>
+      <div class="text-center mb-12 space-y-3">
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold border border-blue-100">
+          ⭐ Apa Kata Mereka?
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900">Apa Kata Mereka?</h2>
+        <p class="text-gray-600">Testimoni dari warga sekolah kami</p>
       </div>
 
       <!-- Carousel -->
@@ -20,28 +23,22 @@
               :style="{ minWidth: `${100 / slidesPerView}%` }"
               class="px-3"
             >
-              <div class="bg-white rounded-xl shadow-md p-6 h-full flex flex-col">
+              <div class="bg-white rounded-2xl shadow-md border border-gray-100 p-6 h-full flex flex-col">
                 <!-- Rating -->
-                <div class="flex mb-3">
-                  <span
-                    v-for="i in 5"
-                    :key="i"
-                    :class="i <= t.rating ? 'text-yellow-400' : 'text-gray-200'"
-                    class="text-lg"
-                    >★</span
-                  >
+                <div class="flex mb-3 text-yellow-400">
+                  <span v-for="i in 5" :key="i" class="text-lg">
+                    {{ i <= t.rating ? '★' : '☆' }}
+                  </span>
                 </div>
                 <!-- Isi -->
-                <p class="text-gray-600 text-sm leading-relaxed flex-1">"{{ t.isi }}"</p>
+                <p class="text-gray-700 text-sm leading-relaxed flex-1">"{{ t.isi }}"</p>
                 <!-- Profil -->
                 <div class="flex items-center mt-4 pt-4 border-t border-gray-100">
-                  <div
-                    class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold"
-                  >
+                  <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold">
                     {{ t.nama.charAt(0) }}
                   </div>
                   <div class="ml-3">
-                    <p class="text-sm font-semibold text-gray-800">{{ t.nama }}</p>
+                    <p class="text-sm font-semibold text-gray-900">{{ t.nama }}</p>
                     <p v-if="t.jabatan" class="text-xs text-gray-500">{{ t.jabatan }}</p>
                   </div>
                 </div>
@@ -53,13 +50,13 @@
         <!-- Prev/Next -->
         <button
           @click="move(-1)"
-          class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 bg-white shadow rounded-full flex items-center justify-center hover:bg-blue-50"
+          class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 w-10 h-10 bg-white shadow rounded-full flex items-center justify-center hover:bg-gray-50"
         >
           ‹
         </button>
         <button
           @click="move(1)"
-          class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 bg-white shadow rounded-full flex items-center justify-center hover:bg-blue-50"
+          class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 w-10 h-10 bg-white shadow rounded-full flex items-center justify-center hover:bg-gray-50"
         >
           ›
         </button>
@@ -70,7 +67,7 @@
             v-for="i in totalPages"
             :key="i"
             @click="current = i - 1"
-            :class="current === i - 1 ? 'bg-blue-600 w-4' : 'bg-gray-300 w-2.5'"
+            :class="current === i - 1 ? 'bg-blue-600 w-3.5' : 'bg-gray-300 w-2.5'"
             class="h-2.5 rounded-full transition-all duration-300"
           ></button>
         </div>

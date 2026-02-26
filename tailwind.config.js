@@ -9,6 +9,7 @@ export default {
       colors: {
         primary: '#1E40AF',
         secondary: '#64748B',
+        footer: '#0a1f3d',
       }
     },
   },

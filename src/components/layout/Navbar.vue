@@ -1,6 +1,9 @@
 <template>
   <!-- Top Bar: Social Media Icons -->
-  <div class="bg-blue-700 text-white">
+  <div
+    class="bg-[#0667d3] text-white"
+    :class="isHome ? 'absolute top-0 left-0 right-0 z-50' : ''"
+  >
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-end h-8 gap-3">
         <a
@@ -81,26 +84,19 @@
     </div>
   </div>
 
-  <nav class="bg-white shadow-md sticky top-0 z-50 backdrop-blur-sm bg-white/95">
+  <nav :class="navClasses">
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between h-16">
         <!-- Logo & Brand -->
-        <div class="flex items-center gap-3 group">
-          <div class="relative">
-            <div
-              class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity"
-            ></div>
-            <div
-              class="relative w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg overflow-hidden ring-2 ring-blue-100 group-hover:ring-blue-300 transition-all duration-300"
-            >
-              <img
-                src="/images/logo_11.png"
-                alt="Logo SMKN 11 Bandung"
-                class="w-full h-full object-contain p-1"
-              />
-            </div>
+        <div class="flex items-center gap-2 md:gap-3 group pl-3 md:pl-5">
+          <div class="relative w-11 h-11 md:w-12 md:h-12 rounded-full overflow-hidden transition-all duration-300">
+            <img
+              src="/images/logo_11.png"
+              alt="Logo SMKN 11 Bandung"
+              class="w-full h-full object-contain"
+            />
           </div>
-          <router-link to="/" class="flex flex-col">
+          <router-link to="/" class="flex flex-col leading-tight">
             <span
               class="text-xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transition-all"
             >
@@ -116,7 +112,8 @@
         <div class="hidden lg:flex items-center space-x-6">
           <router-link
             to="/"
-            class="relative text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200 group px-1"
+            class="relative font-medium transition-colors duration-200 group px-1"
+            :class="linkBaseClass"
           >
             <span class="relative z-10">Home</span>
             <span
@@ -127,7 +124,8 @@
           <!-- Profil Sekolah Mega Menu -->
           <div class="relative" @mouseenter="showMenu('profil')" @mouseleave="hideMenu('profil')">
             <button
-              class="relative text-gray-700 font-medium hover:text-blue-600 flex items-center transition-colors duration-200 group px-1"
+              class="relative font-medium flex items-center transition-colors duration-200 group px-1"
+              :class="linkBaseClass"
             >
               <span class="relative z-10">Profil Sekolah</span>
               <svg
@@ -174,7 +172,8 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/kepala-sekolah"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600 transition-all duration-200"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
+                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">👨‍💼</span>
                 <span class="font-medium">Kepala Sekolah</span>
@@ -182,7 +181,8 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/guru"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600 transition-all duration-200"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
+                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">👨‍🏫</span>
                 <span class="font-medium">Data Guru</span>
@@ -190,7 +190,8 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/siswa"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600 transition-all duration-200"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
+                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">🎓</span>
                 <span class="font-medium">Data Siswa</span>
@@ -198,7 +199,8 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/tata-usaha"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600 transition-all duration-200"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
+                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">📋</span>
                 <span class="font-medium">Tata Usaha</span>
@@ -206,7 +208,8 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/struktur-organisasi"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600 transition-all duration-200"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
+                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">🏢</span>
                 <span class="font-medium">Struktur Organisasi</span>
@@ -214,7 +217,8 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/fasilitas"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600 transition-all duration-200"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
+                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">🏗️</span>
                 <span class="font-medium">Fasilitas</span>
@@ -636,7 +640,8 @@
         <router-link
           @click="mobileMenuOpen = false"
           to="/"
-          class="block py-2 text-gray-700 hover:text-blue-600 transition"
+          class="block py-2 transition"
+          :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-blue-600'"
           >Home</router-link
         >
 
@@ -644,7 +649,8 @@
         <div>
           <button
             @click="toggleMobileMenu('profil')"
-            class="w-full flex justify-between items-center py-2 text-gray-700"
+            class="w-full flex justify-between items-center py-2"
+            :class="isHome ? 'text-white' : 'text-gray-700'"
           >
             <span>Profil Sekolah</span>
             <svg
@@ -712,7 +718,8 @@
         <div>
           <button
             @click="toggleMobileMenu('program')"
-            class="w-full flex justify-between items-center py-2 text-gray-700"
+            class="w-full flex justify-between items-center py-2"
+            :class="isHome ? 'text-white' : 'text-gray-700'"
           >
             <span>Program</span>
             <svg
@@ -756,7 +763,8 @@
         <div>
           <button
             @click="toggleMobileMenu('akademik')"
-            class="w-full flex justify-between items-center py-2 text-gray-700"
+            class="w-full flex justify-between items-center py-2"
+            :class="isHome ? 'text-white' : 'text-gray-700'"
           >
             <span>Akademik</span>
             <svg
@@ -799,14 +807,16 @@
         <router-link
           @click="mobileMenuOpen = false"
           to="/pkl"
-          class="block py-2 text-gray-700 hover:text-blue-600 transition"
+          class="block py-2 transition"
+          :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-blue-600'"
           >PKL</router-link
         >
         <!-- Pojok Siswa Mobile -->
         <div>
           <button
             @click="toggleMobileMenu('pojokSiswa')"
-            class="flex items-center justify-between w-full py-2 text-gray-700 hover:text-blue-600 transition"
+            class="flex items-center justify-between w-full py-2 transition"
+            :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-blue-600'"
           >
             <span>Pojok Siswa</span>
             <svg
@@ -846,7 +856,8 @@
         <div>
           <button
             @click="toggleMobileMenu('informasi')"
-            class="w-full flex justify-between items-center py-2 text-gray-700"
+            class="w-full flex justify-between items-center py-2"
+            :class="isHome ? 'text-white' : 'text-gray-700'"
           >
             <span>Informasi</span>
             <svg
@@ -934,16 +945,38 @@
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-out;
 }
+
+/* Force white text on hero overlay */
+.nav-home :deep(a),
+.nav-home :deep(button),
+.nav-home :deep(span) {
+  color: #ffffff !important;
+}
+
+.nav-home :deep(.hover\:text-blue-600:hover),
+.nav-home :deep(.hover\:text-gray-700:hover) {
+  color: #e0e7ff !important;
+}
 </style>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import apiClient from '@/api/axios'
 
 const router = useRouter()
+const route = useRoute()
 const authStore = useAuthStore()
+const isHome = computed(() => route.path === '/')
+const linkBaseClass = computed(() =>
+  isHome.value ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-blue-600',
+)
+const navClasses = computed(() =>
+  isHome.value
+    ? 'nav-home absolute left-0 right-0 top-8 z-40 bg-transparent text-white'
+    : 'sticky top-0 z-50 bg-white shadow-md backdrop-blur-sm bg-white/95',
+)
 
 // --- Social Media ---
 const socialMediaList = ref([])
