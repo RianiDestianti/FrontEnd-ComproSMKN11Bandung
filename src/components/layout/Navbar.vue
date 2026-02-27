@@ -97,13 +97,13 @@
             />
           </div>
           <router-link to="/" class="flex flex-col leading-tight">
-            <span
-              class="text-xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transition-all"
-            >
+            <span class="text-xl font-bold transition-colors" :class="brandTextClass">
               SMKN 11 Bandung
             </span>
-            <span class="text-xs text-gray-600 font-medium tracking-wide"
-              >Sekolah Pusat Keunggulan</span
+            <span
+              class="text-xs font-medium tracking-wide"
+              :class="isHome ? 'text-white/80' : 'text-gray-600'"
+            >Sekolah Pusat Keunggulan</span
             >
           </router-link>
         </div>
@@ -112,7 +112,7 @@
         <div class="hidden lg:flex items-center space-x-6">
           <router-link
             to="/"
-            class="relative font-medium transition-colors duration-200 group px-1"
+            class="relative font-medium transition-colors duration-200 group px-1 top-nav-link"
             :class="linkBaseClass"
           >
             <span class="relative z-10">Home</span>
@@ -124,7 +124,7 @@
           <!-- Profil Sekolah Mega Menu -->
           <div class="relative" @mouseenter="showMenu('profil')" @mouseleave="hideMenu('profil')">
             <button
-              class="relative font-medium flex items-center transition-colors duration-200 group px-1"
+              class="relative font-medium flex items-center transition-colors duration-200 group px-1 top-nav-link"
               :class="linkBaseClass"
             >
               <span class="relative z-10">Profil Sekolah</span>
@@ -172,8 +172,7 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/kepala-sekolah"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
-                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">👨‍💼</span>
                 <span class="font-medium">Kepala Sekolah</span>
@@ -181,8 +180,7 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/guru"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
-                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">👨‍🏫</span>
                 <span class="font-medium">Data Guru</span>
@@ -190,8 +188,7 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/siswa"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
-                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">🎓</span>
                 <span class="font-medium">Data Siswa</span>
@@ -199,8 +196,7 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/tata-usaha"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
-                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">📋</span>
                 <span class="font-medium">Tata Usaha</span>
@@ -208,8 +204,7 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/struktur-organisasi"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
-                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">🏢</span>
                 <span class="font-medium">Struktur Organisasi</span>
@@ -217,8 +212,7 @@
               <router-link
                 @click="desktopMenus.profil = false"
                 to="/fasilitas"
-                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200"
-                :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600'"
+                class="group flex items-center gap-3 px-5 py-2.5 text-sm transition-all duration-200 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600"
               >
                 <span class="text-lg group-hover:scale-110 transition-transform">🏗️</span>
                 <span class="font-medium">Fasilitas</span>
@@ -229,7 +223,8 @@
           <!-- Program Mega Menu -->
           <div class="relative" @mouseenter="showMenu('program')" @mouseleave="hideMenu('program')">
             <button
-              class="relative text-gray-700 font-medium hover:text-blue-600 flex items-center transition-colors duration-200 group px-1"
+              class="relative font-medium flex items-center transition-colors duration-200 group px-1 top-nav-link"
+              :class="linkBaseClass"
             >
               <span class="relative z-10">Program</span>
               <svg
@@ -299,7 +294,8 @@
             @mouseleave="hideMenu('akademik')"
           >
             <button
-              class="relative text-gray-700 font-medium hover:text-blue-600 flex items-center transition-colors duration-200 group px-1"
+              class="relative font-medium flex items-center transition-colors duration-200 group px-1 top-nav-link"
+              :class="linkBaseClass"
             >
               <span class="relative z-10">Akademik</span>
               <svg
@@ -354,7 +350,8 @@
           <!-- PKL Mega Menu -->
           <div class="relative" @mouseenter="showMenu('pkl')" @mouseleave="hideMenu('pkl')">
             <button
-              class="relative text-gray-700 font-medium hover:text-blue-600 flex items-center transition-colors duration-200 group px-1"
+              class="relative font-medium flex items-center transition-colors duration-200 group px-1 top-nav-link"
+              :class="linkBaseClass"
             >
               <span class="relative z-10">PKL</span>
               <svg
@@ -405,7 +402,8 @@
             @mouseleave="hideMenu('pojokSiswa')"
           >
             <button
-              class="relative text-gray-700 font-medium hover:text-blue-600 flex items-center transition-colors duration-200 group px-1"
+              class="relative font-medium flex items-center transition-colors duration-200 group px-1 top-nav-link"
+              :class="linkBaseClass"
             >
               <span class="relative z-10">Pojok Siswa</span>
               <svg
@@ -459,7 +457,8 @@
             @mouseleave="hideMenu('informasi')"
           >
             <button
-              class="relative text-gray-700 font-medium hover:text-blue-600 flex items-center transition-colors duration-200 group px-1"
+              class="relative font-medium flex items-center transition-colors duration-200 group px-1 top-nav-link"
+              :class="linkBaseClass"
             >
               <span class="relative z-10">Informasi</span>
               <svg
@@ -526,7 +525,10 @@
             @mouseenter="showMenu('admin')"
             @mouseleave="hideMenu('admin')"
           >
-            <button class="text-gray-700 hover:text-blue-600 flex items-center transition">
+            <button
+              class="flex items-center transition top-nav-link"
+              :class="linkBaseClass"
+            >
               Admin
               <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -559,7 +561,8 @@
         <div class="lg:hidden">
           <button
             @click="mobileMenuOpen = !mobileMenuOpen"
-            class="text-gray-700 hover:text-blue-600"
+            class="top-nav-link"
+            :class="linkBaseClass"
           >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -589,7 +592,8 @@
             @mouseleave="hideMenu('user')"
           >
             <button
-              class="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition"
+              class="flex items-center space-x-2 transition top-nav-link"
+              :class="linkBaseClass"
             >
               <div
                 class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm"
@@ -640,8 +644,7 @@
         <router-link
           @click="mobileMenuOpen = false"
           to="/"
-          class="block py-2 transition"
-          :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-blue-600'"
+          class="block py-2 transition text-gray-700 hover:text-blue-600"
           >Home</router-link
         >
 
@@ -649,8 +652,7 @@
         <div>
           <button
             @click="toggleMobileMenu('profil')"
-            class="w-full flex justify-between items-center py-2"
-            :class="isHome ? 'text-white' : 'text-gray-700'"
+            class="w-full flex justify-between items-center py-2 text-gray-700 hover:text-blue-600"
           >
             <span>Profil Sekolah</span>
             <svg
@@ -718,8 +720,7 @@
         <div>
           <button
             @click="toggleMobileMenu('program')"
-            class="w-full flex justify-between items-center py-2"
-            :class="isHome ? 'text-white' : 'text-gray-700'"
+            class="w-full flex justify-between items-center py-2 text-gray-700 hover:text-blue-600"
           >
             <span>Program</span>
             <svg
@@ -763,8 +764,7 @@
         <div>
           <button
             @click="toggleMobileMenu('akademik')"
-            class="w-full flex justify-between items-center py-2"
-            :class="isHome ? 'text-white' : 'text-gray-700'"
+            class="w-full flex justify-between items-center py-2 text-gray-700 hover:text-blue-600"
           >
             <span>Akademik</span>
             <svg
@@ -807,16 +807,14 @@
         <router-link
           @click="mobileMenuOpen = false"
           to="/pkl"
-          class="block py-2 transition"
-          :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-blue-600'"
+          class="block py-2 transition text-gray-700 hover:text-blue-600"
           >PKL</router-link
         >
         <!-- Pojok Siswa Mobile -->
         <div>
           <button
             @click="toggleMobileMenu('pojokSiswa')"
-            class="flex items-center justify-between w-full py-2 transition"
-            :class="isHome ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-blue-600'"
+            class="flex items-center justify-between w-full py-2 transition text-gray-700 hover:text-blue-600"
           >
             <span>Pojok Siswa</span>
             <svg
@@ -856,8 +854,7 @@
         <div>
           <button
             @click="toggleMobileMenu('informasi')"
-            class="w-full flex justify-between items-center py-2"
-            :class="isHome ? 'text-white' : 'text-gray-700'"
+            class="w-full flex justify-between items-center py-2 text-gray-700 hover:text-blue-600"
           >
             <span>Informasi</span>
             <svg
@@ -946,15 +943,12 @@
   animation: fadeIn 0.2s ease-out;
 }
 
-/* Force white text on hero overlay */
-.nav-home :deep(a),
-.nav-home :deep(button),
-.nav-home :deep(span) {
+/* Force white text on hero overlay (only for top-level nav items) */
+.nav-home :deep(.top-nav-link) {
   color: #ffffff !important;
 }
 
-.nav-home :deep(.hover\:text-blue-600:hover),
-.nav-home :deep(.hover\:text-gray-700:hover) {
+.nav-home :deep(.top-nav-link:hover) {
   color: #e0e7ff !important;
 }
 </style>
@@ -969,6 +963,9 @@ const router = useRouter()
 const route = useRoute()
 const authStore = useAuthStore()
 const isHome = computed(() => route.path === '/')
+const brandTextClass = computed(() =>
+  isHome.value ? 'text-white hover:text-white/80' : 'text-blue-700 hover:text-blue-800',
+)
 const linkBaseClass = computed(() =>
   isHome.value ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-blue-600',
 )
@@ -979,16 +976,58 @@ const navClasses = computed(() =>
 )
 
 // --- Social Media ---
-const socialMediaList = ref([])
+const defaultSocialMedia = [
+  {
+    id: 'instagram',
+    platform: 'Instagram',
+    url: 'https://www.instagram.com/info.smkn11bandung',
+    icon: 'instagram',
+    status: 'aktif',
+  },
+  {
+    id: 'youtube',
+    platform: 'Youtube',
+    url: 'https://www.youtube.com/@SMKN11BANDUNG',
+    icon: 'youtube',
+    status: 'aktif',
+  },
+  {
+    id: 'tiktok',
+    platform: 'TikTok',
+    url: 'https://www.tiktok.com/@smkn11bdg',
+    icon: 'tiktok',
+    status: 'aktif',
+  },
+  {
+    id: 'facebook',
+    platform: 'Facebook',
+    url: 'https://www.facebook.com/smknegeri11bdg/',
+    icon: 'facebook',
+    status: 'aktif',
+  },
+]
+
+const socialMediaList = ref([...defaultSocialMedia])
+
+const normalizeIcon = (icon) => (icon || '').toLowerCase()
+
 const fetchSocialMedia = async () => {
   try {
     const res = await apiClient.get('/social-media')
-    console.log('Response social media:', res.data)
-    const data = res.data.data.data || []
-    socialMediaList.value = data.filter((item) => item && item.status === 'aktif')
+    const data = res?.data?.data?.data || []
+    const activeList = data
+      .filter((item) => item && item.status === 'aktif')
+      .map((item) => ({
+        ...item,
+        icon: normalizeIcon(item.icon),
+        id: item.id || item.platform || item.icon,
+        url: item.url || '#',
+      }))
+
+    socialMediaList.value = activeList.length ? activeList : defaultSocialMedia
   } catch (e) {
     console.error('Gagal mengambil data social media:', e)
-    socialMediaList.value = []
+    socialMediaList.value = defaultSocialMedia
   }
 }
 
