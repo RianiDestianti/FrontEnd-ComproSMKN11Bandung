@@ -975,7 +975,7 @@ const navClasses = computed(() =>
     : 'sticky top-0 z-50 bg-white shadow-md backdrop-blur-sm bg-white/95',
 )
 
-// --- Social Media ---
+// --- Social Media (CMS-first with fallback to seed) ---
 const defaultSocialMedia = [
   {
     id: 'instagram',
@@ -1007,7 +1007,7 @@ const defaultSocialMedia = [
   },
 ]
 
-const socialMediaList = ref([...defaultSocialMedia])
+const socialMediaList = ref([])
 
 const normalizeIcon = (icon) => (icon || '').toLowerCase()
 
